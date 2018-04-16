@@ -1,4 +1,5 @@
 class Boid {
+  public int shapeOfBoid = 0;
   Node node;
   int grabsMouseColor;
   int avatarColor;
@@ -184,21 +185,167 @@ class Boid {
 
     //draw boid
     beginShape(kind);
-    vertex(3 * sc, 0, 0);
-    vertex(-3 * sc, 2 * sc, 0);
-    vertex(-3 * sc, -2 * sc, 0);
-
-    vertex(3 * sc, 0, 0);
-    vertex(-3 * sc, 2 * sc, 0);
-    vertex(-3 * sc, 0, 2 * sc);
-
-    vertex(3 * sc, 0, 0);
-    vertex(-3 * sc, 0, 2 * sc);
-    vertex(-3 * sc, -2 * sc, 0);
-
-    vertex(-3 * sc, 0, 2 * sc);
-    vertex(-3 * sc, 2 * sc, 0);
-    vertex(-3 * sc, -2 * sc, 0);
+    if(shapeOfBoid % 3 == 0){
+      vertex(3 * sc, 0, 0);
+      vertex(-3 * sc, 2 * sc, 0);
+      vertex(-3 * sc, -2 * sc, 0);    
+  
+      vertex(3 * sc, 0, 0);
+      vertex(-3 * sc, 2 * sc, 0);
+      vertex(-3 * sc, 0, 2 * sc);
+  
+      vertex(3 * sc, 0, 0);
+      vertex(-3 * sc, 0, 2 * sc);
+      vertex(-3 * sc, -2 * sc, 0);
+  
+      vertex(-3 * sc, 0, 2 * sc);
+      vertex(-3 * sc, 2 * sc, 0);
+      vertex(-3 * sc, -2 * sc, 0);
+    }
+    
+    if(shapeOfBoid % 3 == 1){
+      vertex(2 * sc, 2 * sc, 2 * sc);
+      vertex(2 * sc, 2 * sc, -2 * sc);
+      vertex(4 * sc, 0, 0);
+      
+      vertex(2 * sc, 2 * sc, 2 * sc);
+      vertex(2 * sc, -2 * sc, 2 * sc);
+      vertex(4 * sc, 0, 0);
+      
+      vertex(2 * sc, -2 * sc, 2 * sc);
+      vertex(2 * sc, -2 * sc, -2 * sc);
+      vertex(4 * sc, 0, 0);
+      
+      vertex(2 * sc, -2 * sc, -2 * sc);
+      vertex(2 * sc, 2 * sc, -2 * sc);
+      vertex(4 * sc, 0, 0);
+      //----------------------------------
+      vertex(2 * sc, 2 * sc, 2 * sc);
+      vertex(2 * sc, 2 * sc, -2 * sc);
+      vertex(0, 4 * sc, 0);
+      
+      vertex(2 * sc, 2 * sc, 2 * sc);
+      vertex(-2 * sc, 2 * sc, 2 * sc);
+      vertex(0, 4 * sc, 0);
+      
+      vertex(-2 * sc, 2 * sc, 2 * sc);
+      vertex(-2 * sc, 2 * sc, -2 * sc);
+      vertex(0, 4 * sc, 0);
+      
+      vertex(2 * sc, 2 * sc, -2 * sc);
+      vertex(-2 * sc, 2 * sc, -2 * sc);
+      vertex(0, 4 * sc, 0);
+      //---------------------------------
+      vertex(-2 * sc, 2 * sc, 2 * sc);
+      vertex(-2 * sc, 2 * sc, -2 * sc);
+      vertex(-4 * sc, 0, 0);
+      
+      vertex(-2 * sc, 2 * sc, -2 * sc);
+      vertex(-2 * sc, -2 * sc, -2 * sc);
+      vertex(-4 * sc, 0, 0);
+      
+      vertex(-2 * sc, -2 * sc, -2 * sc);
+      vertex(-2 * sc, -2 * sc, 2 * sc);
+      vertex(-4 * sc, 0, 0);
+      
+      vertex(-2 * sc, -2 * sc, 2 * sc);
+      vertex(-2 * sc, 2 * sc, 2 * sc);
+      vertex(-4 * sc, 0, 0);
+      //------------------------------
+      
+      vertex(2 * sc, -2 * sc, 2 * sc);
+      vertex(2 * sc, -2 * sc, -2 * sc);
+      vertex(0, -4 * sc, 0);
+      
+      vertex(2 * sc, -2 * sc, -2 * sc);
+      vertex(-2 * sc, -2 * sc, -2 * sc);
+      vertex(0, -4 * sc, 0);
+      
+      vertex(-2 * sc, -2 * sc, -2 * sc);
+      vertex(-2 * sc, -2 * sc, 2 * sc);
+      vertex(0, -4 * sc, 0);
+      
+      vertex(-2 * sc, -2 * sc, 2 * sc);
+      vertex(2 * sc, -2 * sc, 2 * sc);
+      vertex(0, -4 * sc, 0);
+       //------------------------------
+      vertex(2 * sc, -2 * sc, 2 * sc);
+      vertex(2 * sc, 2 * sc, 2 * sc);
+      vertex(0, 0,  4 * sc);
+      
+      vertex(2 * sc, 2 * sc, 2 * sc);
+      vertex(-2 * sc, 2 * sc, 2 * sc);
+      vertex(0, 0,  4 * sc);
+      
+      vertex(-2 * sc, 2 * sc, 2 * sc);
+      vertex(-2 * sc, -2 * sc, 2 * sc);
+      vertex(0, 0,  4 * sc);
+      
+      vertex(-2 * sc, -2 * sc, 2 * sc);
+      vertex(2 * sc, -2 * sc, 2 * sc);
+      vertex(0, 0,  4 * sc);
+      //------------------------------
+      vertex(2 * sc, -2 * sc, -2 * sc);
+      vertex(2 * sc, 2 * sc, -2 * sc);
+      vertex(0, 0,  -4 * sc);
+      
+      vertex(2 * sc, 2 * sc, -2 * sc);
+      vertex(-2 * sc, 2 * sc, -2 * sc);
+      vertex(0, 0,  -4 * sc);
+      
+      vertex(-2 * sc, 2 * sc, -2 * sc);
+      vertex(-2 * sc, -2 * sc, -2 * sc);
+      vertex(0, 0,  -4 * sc);
+      
+      vertex(-2 * sc, -2 * sc, -2 * sc);
+      vertex(2 * sc, -2 * sc, -2 * sc);
+      vertex(0, 0,  -4 * sc);
+    }   
+    
+    if(shapeOfBoid % 3 == 2){
+     
+      vertex(3 * sc, 0, 0);
+      vertex(-2.5 * sc, 0, 2.5 * sc);
+      vertex(0, 5 * sc, 0);
+  
+      vertex(-2.5 * sc, 0, 2.5 * sc);
+      vertex(-2.5 * sc, 0, -2.5 * sc);
+      vertex(0, 5 * sc, 0);
+      
+      vertex(-2.5 * sc, 0, -2.5 * sc);
+      vertex(3 * sc, 0, 0);
+      vertex(0, 5 * sc, 0);
+      
+      vertex(3 * sc, 0, 0);
+      vertex(-2.5 * sc, 0, 2.5 * sc);
+      vertex(0, -5 * sc, 0);
+      
+      vertex(-2.5 * sc, 0, 2.5 * sc);
+      vertex(-2.5 * sc, 0, -2.5 * sc);
+      vertex(0, -5 * sc, 0);
+      
+      vertex(-2.5 * sc, 0, -2.5 * sc);
+      vertex(3 * sc, 0, 0);
+      vertex(0, -5 * sc, 0);
+      
+      
+      vertex(1 * sc, -7 * sc, 0);
+      vertex(-0.5 * sc, -7 * sc, 0.5 * sc);
+      vertex(0, -5 * sc, 0);
+      
+      vertex(-0.5 * sc, -7 * sc, 0.5 * sc);
+      vertex(-0.5 * sc, -7 * sc, -0.5 * sc);
+      vertex(0, -5 * sc, 0);
+      
+      vertex(-0.5 * sc, -7 * sc, -0.5 * sc);
+      vertex(1 * sc, -7 * sc, 0);
+      vertex(0, -5 * sc, 0);
+      
+      vertex(1 * sc, -7 * sc, 0);
+      vertex(-0.5 * sc, -7 * sc, 0.5 * sc);
+      vertex(-0.5 * sc, -7 * sc, -0.5 * sc);
+      
+    }
     endShape();
 
     popStyle();

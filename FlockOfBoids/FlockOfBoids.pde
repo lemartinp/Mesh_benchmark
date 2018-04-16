@@ -15,6 +15,7 @@
  * Press 't' to shift timers: sequential and parallel.
  * Press 'v' to toggle boids' wall skipping.
  * Press 's' to call scene.fitBallInterpolation().
+ * Press 'l' to change boid shape
  */
 
 import frames.input.*;
@@ -36,7 +37,7 @@ boolean avoidWalls = true;
 // 3. Only points
 int mode;
 
-int initBoidNum = 3; // amount of boids to start the program with
+int initBoidNum = 50; // amount of boids to start the program with
 ArrayList<Boid> flock;
 Node avatar;
 boolean animate = true;
@@ -120,5 +121,9 @@ void keyPressed() {
       scene.interpolateTo(avatar);
     }
     break;
+  case 'l':
+    for(int l = 0; l < flock.size(); l++){
+      flock.get(l).shapeOfBoid += 1;
+    }
   }
 }
