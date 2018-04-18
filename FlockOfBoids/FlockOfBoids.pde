@@ -16,6 +16,7 @@
  * Press 'v' to toggle boids' wall skipping.
  * Press 's' to call scene.fitBallInterpolation().
  * Press 'l' to change boid shape
+ * Press 'r' to change render mode between inmediate and detained
  */
 
 import frames.input.*;
@@ -29,7 +30,8 @@ int flockWidth = 1280;
 int flockHeight = 720;
 int flockDepth = 600;
 boolean avoidWalls = true;
-
+//PShape for detained mode
+PShape fish;
 // visual modes
 // 0. Faces and edges
 // 1. Wireframe (only edges)
@@ -37,7 +39,7 @@ boolean avoidWalls = true;
 // 3. Only points
 int mode;
 
-int initBoidNum = 50; // amount of boids to start the program with
+int initBoidNum = 900; // amount of boids to start the program with
 ArrayList<Boid> flock;
 Node avatar;
 boolean animate = true;
@@ -53,16 +55,69 @@ void setup() {
   //interactivity defaults to the eye
   scene.setDefaultGrabber(eye);
   scene.fitBall();
+  //creating shape for detained mode
+  pushStyle();
+  strokeWeight(2);
+  stroke(color(0, 255, 0));
+  fill(color(255, 0, 0, 125));
+  fish = createShape();
+  fish.beginShape();
+  fish.vertex(3 * 3, 0, 0);
+  fish.vertex(-2.5 * 3, 0, 2.5 * 3);
+  fish.vertex(0, 5 * 3, 0);
+
+  fish.vertex(-2.5 * 3, 0, 2.5 * 3);
+  fish.vertex(-2.5 * 3, 0, -2.5 * 3);
+  fish.vertex(0, 5 * 3, 0);
+  
+  fish.vertex(-2.5 * 3, 0, -2.5 * 3);
+  fish.vertex(3 * 3, 0, 0);
+  fish.vertex(0, 5 * 3, 0);
+  
+  fish.vertex(3 * 3, 0, 0);
+  fish.vertex(-2.5 * 3, 0, 2.5 * 3);
+  fish.vertex(0, -5 * 3, 0);
+  
+  fish.vertex(-2.5 * 3, 0, 2.5 * 3);
+  fish.vertex(-2.5 * 3, 0, -2.5 * 3);
+  fish.vertex(0, -5 * 3, 0);
+  
+  fish.vertex(-2.5 * 3, 0, -2.5 * 3);
+  fish.vertex(3 * 3, 0, 0);
+  fish.vertex(0, -5 * 3, 0);
+  
+  
+  fish.vertex(1 * 3, -7 * 3, 0);
+  fish.vertex(-0.5 * 3, -7 * 3, 0.5 * 3);
+  fish.vertex(0, -5 * 3, 0);
+  
+  fish.vertex(-0.5 * 3, -7 * 3, 0.5 * 3);
+  fish.vertex(-0.5 * 3, -7 * 3, -0.5 * 3);
+  fish.vertex(0, -5 * 3, 0);
+  
+  fish.vertex(-0.5 * 3, -7 * 3, -0.5 * 3);
+  fish.vertex(1 * 3, -7 * 3, 0);
+  fish.vertex(0, -5 * 3, 0);
+  
+  fish.vertex(1 * 3, -7 * 3, 0);
+  fish.vertex(-0.5 * 3, -7 * 3, 0.5 * 3);
+  fish.vertex(-0.5 * 3, -7 * 3, -0.5 * 3);
+  fish.endShape(CLOSE);
+  popStyle();
   // create and fill the list of boids
   flock = new ArrayList();
   for (int i = 0; i < initBoidNum; i++)
-    flock.add(new Boid(new Vector(flockWidth / 2, flockHeight / 2, flockDepth / 2)));
+    flock.add(new Boid(new Vector(flockWidth / 2, flockHeight / 2, flockDepth / 2), fish));
 }
 
 void draw() {
   background(0);
   ambientLight(128, 128, 128);
   directionalLight(255, 255, 255, 0, 1, -100);
+  pushStyle();
+  textSize(32);
+  text(frameRate,900,1000);
+  popStyle();
   walls();
   // Calls Node.visit() on all scene nodes.
   scene.traverse();
@@ -124,6 +179,10 @@ void keyPressed() {
   case 'l':
     for(int l = 0; l < flock.size(); l++){
       flock.get(l).shapeOfBoid += 1;
+    }
+  case 'r':
+    for(int l = 0; l < flock.size(); l++){
+      flock.get(l).renderType = !flock.get(l).renderType;
     }
   }
 }

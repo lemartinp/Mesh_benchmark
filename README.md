@@ -1,4 +1,4 @@
-# Taller de mallas poligonales
+﻿# Taller de mallas poligonales
 
 ## Propósito
 
@@ -39,7 +39,8 @@ Complete la tabla:
 
 | Integrante | github nick |
 |------------|-------------|
-|            |             |
+| Luis Eduardo Martín De La Peña | lemartinp |
+| Andrés Felipe Moreno Solano | anfmorenoso |
 
 ## Entrega
 

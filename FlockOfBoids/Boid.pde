@@ -1,5 +1,6 @@
 class Boid {
   public int shapeOfBoid = 0;
+  public boolean renderType = true;
   Node node;
   int grabsMouseColor;
   int avatarColor;
@@ -12,8 +13,10 @@ class Boid {
   float sc = 3; // scale factor for the render of the boid
   float flap = 0;
   float t = 0;
+  PShape fish;
 
-  Boid(Vector inPos) {
+  Boid(Vector inPos, PShape fish) {
+    this.fish = fish;
     grabsMouseColor = color(0, 0, 255);
     avatarColor = color(255, 255, 0);
     position = new Vector();
@@ -184,8 +187,9 @@ class Boid {
     }
 
     //draw boid
-    beginShape(kind);
+    
     if(shapeOfBoid % 3 == 0){
+      beginShape(kind);
       vertex(3 * sc, 0, 0);
       vertex(-3 * sc, 2 * sc, 0);
       vertex(-3 * sc, -2 * sc, 0);    
@@ -201,9 +205,11 @@ class Boid {
       vertex(-3 * sc, 0, 2 * sc);
       vertex(-3 * sc, 2 * sc, 0);
       vertex(-3 * sc, -2 * sc, 0);
+      endShape();
     }
     
     if(shapeOfBoid % 3 == 1){
+      beginShape(kind);
       vertex(2 * sc, 2 * sc, 2 * sc);
       vertex(2 * sc, 2 * sc, -2 * sc);
       vertex(4 * sc, 0, 0);
@@ -300,53 +306,58 @@ class Boid {
       vertex(-2 * sc, -2 * sc, -2 * sc);
       vertex(2 * sc, -2 * sc, -2 * sc);
       vertex(0, 0,  -4 * sc);
+      endShape();
     }   
     
     if(shapeOfBoid % 3 == 2){
-     
-      vertex(3 * sc, 0, 0);
-      vertex(-2.5 * sc, 0, 2.5 * sc);
-      vertex(0, 5 * sc, 0);
-  
-      vertex(-2.5 * sc, 0, 2.5 * sc);
-      vertex(-2.5 * sc, 0, -2.5 * sc);
-      vertex(0, 5 * sc, 0);
-      
-      vertex(-2.5 * sc, 0, -2.5 * sc);
-      vertex(3 * sc, 0, 0);
-      vertex(0, 5 * sc, 0);
-      
-      vertex(3 * sc, 0, 0);
-      vertex(-2.5 * sc, 0, 2.5 * sc);
-      vertex(0, -5 * sc, 0);
-      
-      vertex(-2.5 * sc, 0, 2.5 * sc);
-      vertex(-2.5 * sc, 0, -2.5 * sc);
-      vertex(0, -5 * sc, 0);
-      
-      vertex(-2.5 * sc, 0, -2.5 * sc);
-      vertex(3 * sc, 0, 0);
-      vertex(0, -5 * sc, 0);
-      
-      
-      vertex(1 * sc, -7 * sc, 0);
-      vertex(-0.5 * sc, -7 * sc, 0.5 * sc);
-      vertex(0, -5 * sc, 0);
-      
-      vertex(-0.5 * sc, -7 * sc, 0.5 * sc);
-      vertex(-0.5 * sc, -7 * sc, -0.5 * sc);
-      vertex(0, -5 * sc, 0);
-      
-      vertex(-0.5 * sc, -7 * sc, -0.5 * sc);
-      vertex(1 * sc, -7 * sc, 0);
-      vertex(0, -5 * sc, 0);
-      
-      vertex(1 * sc, -7 * sc, 0);
-      vertex(-0.5 * sc, -7 * sc, 0.5 * sc);
-      vertex(-0.5 * sc, -7 * sc, -0.5 * sc);
-      
+      if(renderType)
+        shape(this.fish);
+       else{
+         beginShape(kind);
+         vertex(3 * 3, 0, 0);
+         vertex(-2.5 * 3, 0, 2.5 * 3);
+         vertex(0, 5 * 3, 0);
+          
+         vertex(-2.5 * 3, 0, 2.5 * 3);
+         vertex(-2.5 * 3, 0, -2.5 * 3);
+         vertex(0, 5 * 3, 0);
+          
+         vertex(-2.5 * 3, 0, -2.5 * 3);
+         vertex(3 * 3, 0, 0);
+         vertex(0, 5 * 3, 0);
+          
+         vertex(3 * 3, 0, 0);
+         vertex(-2.5 * 3, 0, 2.5 * 3);
+         vertex(0, -5 * 3, 0);
+          
+         vertex(-2.5 * 3, 0, 2.5 * 3);
+         vertex(-2.5 * 3, 0, -2.5 * 3);
+         vertex(0, -5 * 3, 0);
+          
+         vertex(-2.5 * 3, 0, -2.5 * 3);
+         vertex(3 * 3, 0, 0);
+         vertex(0, -5 * 3, 0);
+          
+          
+         vertex(1 * 3, -7 * 3, 0);
+         vertex(-0.5 * 3, -7 * 3, 0.5 * 3);
+         vertex(0, -5 * 3, 0);
+          
+         vertex(-0.5 * 3, -7 * 3, 0.5 * 3);
+         vertex(-0.5 * 3, -7 * 3, -0.5 * 3);
+         vertex(0, -5 * 3, 0);
+          
+         vertex(-0.5 * 3, -7 * 3, -0.5 * 3);
+         vertex(1 * 3, -7 * 3, 0);
+         vertex(0, -5 * 3, 0);
+          
+         vertex(1 * 3, -7 * 3, 0);
+         vertex(-0.5 * 3, -7 * 3, 0.5 * 3);
+         vertex(-0.5 * 3, -7 * 3, -0.5 * 3);
+         endShape();  
+     }
     }
-    endShape();
+    
 
     popStyle();
   }
